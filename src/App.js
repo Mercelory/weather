@@ -43,7 +43,7 @@ function App() {
  {data.weather ? <img src = {data.weather.icon}/> : null}
   </div>
   <div className='temp mt-12'>
-  {data.main ? <h1 className='text-6xl font-bold'>{data.main.temp} °C</h1> : null}
+  {data.main ? <h1 className='text-4xl font-bold'>{data.main.temp} °C</h1> : null}
   </div>
   <div className='time'>
     <p className='font-bold text-2xl'>{data.timezone}</p>
