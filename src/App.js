@@ -3,6 +3,7 @@ import { Input, InputLeftElement, InputGroup, ChakraProvider } from '@chakra-ui/
 import { SearchIcon } from '@chakra-ui/icons'
 import React, {useState} from 'react'
 import axios from 'axios'
+import theme from './theme';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
   }
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme = {theme}>
     <div  className='p-3 w-1/2 h-screen m-auto relative' >
       <div id = "top">
  <InputGroup >
@@ -57,7 +58,7 @@ function App() {
     <p className='font-bold'>Rain - </p>
     {data.main ? <p className='font-bold ml-1'>{data.main.humidity}%</p> : null}
     </div>
-    <div className='font-bold border-2 rounded-2xl border-zinc-900 p-5'>
+    <div className='font-bold border-2 rounded-2xl border-zinc-900 p-5 '>
     {data.sys ? <h1>{data.name}, {data.sys.country}</h1> : null}
     </div>
   </div>
