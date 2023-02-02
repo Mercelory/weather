@@ -24,8 +24,8 @@ function App() {
 
   return (
     <ChakraProvider>
-      <div className='h-screen'>
-    <div  className='p-5 h-screen w-4/5 m-auto bg-slate-50/25 rounded-3xl flex justify-between items-center flex-col text-center' >
+      <div className='h-screen py-5'>
+    <div  className='p-5 h-[100%] w-4/5 m-auto bg-slate-50/25 rounded-3xl flex justify-between items-center flex-col text-center' >
       <div className='' id = "top">
  <InputGroup >
     <InputLeftElement 
