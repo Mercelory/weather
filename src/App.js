@@ -10,7 +10,8 @@ function App() {
   const [data, setData] = useState({})
   const [location, setLocation] = useState('')
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e3e6399c3fdb2a9882f310b25528d95a&units=metric`
+  const url = `https://api.weatherapi.com/v1/current.json?key=458655d7edcb415490172918230202&q=${location}&aqi=no`
+  
 
   const searchLocation = (event) =>{
     if(event.key === "Enter") {
@@ -22,47 +23,59 @@ function App() {
   }
 
   return (
-    <ChakraProvider theme = {theme}>
-    <div  className='p-3 w-1/2 h-screen m-auto relative' >
-      <div id = "top">
+    <ChakraProvider>
+      <div className='h-screen'>
+    <div  className='p-5 h-screen w-4/5 m-auto bg-slate-50/25 rounded-3xl flex justify-between items-center flex-col text-center' >
+      <div className='' id = "top">
  <InputGroup >
     <InputLeftElement 
       pointerEvents='none'
       children={<SearchIcon color='black' width='15px' height='15px' />}/>
     <Input 
     type='text' 
-    placeholder='Search for places'
-    _placeholder={{ color: 'black', fontWeight: 'bold' }}
+    placeholder='Kyiv'
+    _placeholder={{ color: 'rgba(0,0,0,0.3)', fontWeight: 'bold' }}
     onKeyPress={searchLocation}
     onChange={event => setLocation(event.target.value)}
     value={location}
-    borderRadius="30px"
-    borderWidth="0"/>
+    borderWidth="0"
+    focusBorderColor='0'
+    borderRadius='0'
+    borderBottomWidth='2px'
+    borderColor='black'/>
   </InputGroup>
-  <div className='icon'>
- {data.weather ? <img src = {data.weather.icon}/> : null}
-  </div>
-  <div className='temp mt-12'>
-  {data.main ? <h1 className='text-4xl font-bold'>{data.main.temp} °C</h1> : null}
+  <div className='temp mt-24'>
+  {data.current ? <h1 className='text-4xl font-bold'>{data.current.temp_c} °C</h1> : null}
   </div>
   <div className='time'>
-    <p className='font-bold text-2xl'>{data.timezone}</p>
+  {data.location ? <p className='text-xl mt-1'>{data.location.localtime}</p> : null}
   </div>
   </div>
-  {data.name !== undefined &&
-  <div className = "absolute bottom-0 left-0"id = "bottom">
-    <div className='cloudness'>
-    {data.weather ? <p className='font-bold normal-case'>{data.weather[0].description}</p> : null}
+  {data.location!== undefined &&
+  <div className = "flex flex-col justify-center items-center" id = "bottom">
+    <div className='cloudness flex items-center'>
+  {data.current ? <img src = {data.current.condition.icon} alt = "weather_ico" className='w-6'/> : null }
+    {data.current.condition ? <p className='font-bold normal-case '>{data.current.condition.text}</p> : null}
     </div>
     <div className='Rainess flex'>
-    <p className='font-bold'>Rain - </p>
-    {data.main ? <p className='font-bold ml-1'>{data.main.humidity}%</p> : null}
+    <p className='font-bold'>🌧️Rain - </p>
+    {data.current ? <p className='font-bold ml-1'>{data.current.humidity}%</p> : null}
     </div>
-    <div className='font-bold border-2 rounded-2xl border-zinc-900 p-5 '>
-    {data.sys ? <h1>{data.name}, {data.sys.country}</h1> : null}
+    <div className=' font-bold rounded-2xl p-5 mb-12 bg-slate-50/25 mt-2'>
+    {data.location ? <h1>{data.location.name}, {data.location.country}</h1> : null}
     </div>
+    {/* <div className='forecast bg-slate-50/25 h-36 overflow-x-scroll'>
+      <div className='forecast_days flex'>
+        <div className='forecast_day border-gray-200 border-2'>
+        {data.forecast.forecastday[0].day.condition ? <img src = {data.forecast.forecastday.day.condition.icon} alt = "weather_ico" className='w-6'/> : null }
+        {data.forecast.forecastday.hour ? <h1 className='font-bold'>{data.forecast.forecastday.hour.temp_c} °C</h1> : null}
+        {data.forecast.forecastday ? <h1 className='font-bold'>{data.forecast.forecastday.date}</h1> : null} 
+        </div>
+      </div>
+    </div> */}
   </div>
 }
+    </div>
     </div>
     </ChakraProvider>
   );

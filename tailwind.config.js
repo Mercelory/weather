@@ -4,7 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      'city-bg': "url('./src/bg-city.jpg')",
+    },
   },
   plugins: [],
 }
