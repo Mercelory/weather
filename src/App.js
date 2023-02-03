@@ -10,7 +10,7 @@ function App() {
   const [data, setData] = useState({})
   const [location, setLocation] = useState('')
 
-  const url = `http://api.weatherapi.com/v1/forecast.json?key=12cb6e8c6bea47269d695555230302&q=${location}&days=3&aqi=no&alerts=no`
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=12cb6e8c6bea47269d695555230302&q=${location}&days=4&aqi=no&alerts=no`
 
   
 
@@ -78,6 +78,12 @@ function App() {
         {data.forecast.forecastday[2].day.condition ? <h1>{data.forecast.forecastday[2].day.condition.text}</h1> : null}
         {data.forecast.forecastday[2].day.condition ? <h1>{data.forecast.forecastday[2].day.avgtemp_c}  °C</h1> : null}
         {data.forecast ? <h1>{data.forecast.forecastday[2].date}</h1> : null}
+        </div>
+        <div className='forecast_day border-gray-200 border-2 h-36 rounded-2xl p-3 flex flex-col items-center  mt-2'>
+        {data.forecast.forecastday[3].day.condition ? <img src = {data.forecast.forecastday[3].day.condition.icon} alt = "weather_ico" className='w-12'/> : null }
+        {data.forecast.forecastday[3].day.condition ? <h1>{data.forecast.forecastday[3].day.condition.text}</h1> : null}
+        {data.forecast.forecastday[3].day.condition ? <h1>{data.forecast.forecastday[3].day.avgtemp_c}  °C</h1> : null}
+        {data.forecast ? <h1>{data.forecast.forecastday[3].date}</h1> : null}
         </div>
       </div>
     </div> 
