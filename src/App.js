@@ -10,7 +10,8 @@ function App() {
   const [data, setData] = useState({})
   const [location, setLocation] = useState('')
 
-  const url = `https://api.weatherapi.com/v1/current.json?key=458655d7edcb415490172918230202&q=${location}&aqi=no`
+  const url = `http://api.weatherapi.com/v1/forecast.json?key=12cb6e8c6bea47269d695555230302&q=${location}&days=3&aqi=no&alerts=no`
+
   
 
   const searchLocation = (event) =>{
@@ -24,8 +25,8 @@ function App() {
 
   return (
     <ChakraProvider>
-      <div className='h-screen py-5'>
-    <div  className='p-5 h-[100%] w-4/5 m-auto bg-slate-900/25 rounded-3xl flex justify-between items-center flex-col text-center' >
+      <div className='h-auto'>
+    <div  className='p-5 h-screen  w-screen m-auto bg-slate-900/25 rounded-3xl flex justify-between items-center flex-col text-center' >
       <div className='' id = "top">
  <InputGroup >
     <InputLeftElement 
@@ -61,18 +62,25 @@ function App() {
     <p className='font-bold text-3xl'>🌧️ Rain - </p>
     {data.current ? <p className='font-bold ml-1 text-3xl'>{data.current.humidity}%</p> : null}
     </div>
-    <div className=' font-bold rounded-2xl p-5 mb-12 bg-slate-900/25 mt-2 text-3xl'>
+    <div className=' font-bold rounded-2xl p-5 mb-12 mt-2 text-3xl'>
     {data.location ? <h1>{data.location.name}, {data.location.country}</h1> : null}
     </div>
-    {/* <div className='forecast bg-slate-50/25 h-36 overflow-x-scroll'>
-      <div className='forecast_days flex'>
-        <div className='forecast_day border-gray-200 border-2'>
-        {data.forecast.forecastday[0].day.condition ? <img src = {data.forecast.forecastday.day.condition.icon} alt = "weather_ico" className='w-6'/> : null }
-        {data.forecast.forecastday.hour ? <h1 className='font-bold'>{data.forecast.forecastday.hour.temp_c} °C</h1> : null}
-        {data.forecast.forecastday ? <h1 className='font-bold'>{data.forecast.forecastday.date}</h1> : null} 
+    <div className='forecast h-36 w-full'>
+      <div className='forecast_days flex justify-between flex-wrap items-center align-middle max-[300px]:justify-center'>
+        <div className='forecast_day border-gray-200 border-2 h-36 rounded-2xl p-3 flex flex-col items-center'>
+        {data.forecast.forecastday[1].day.condition ? <img src = {data.forecast.forecastday[1].day.condition.icon} alt = "weather_ico" className='w-12'/> : null }
+        {data.forecast.forecastday[1].day.condition ? <h1>{data.forecast.forecastday[1].day.condition.text}</h1> : null}
+        {data.forecast.forecastday[1].day.condition ? <h1>{data.forecast.forecastday[1].day.avgtemp_c}  °C</h1> : null}
+        {data.forecast ? <h1>{data.forecast.forecastday[1].date}</h1> : null}
+        </div>
+        <div className='forecast_day border-gray-200 border-2 h-36 rounded-2xl p-3 flex flex-col items-center  mt-2'>
+        {data.forecast.forecastday[2].day.condition ? <img src = {data.forecast.forecastday[2].day.condition.icon} alt = "weather_ico" className='w-12'/> : null }
+        {data.forecast.forecastday[2].day.condition ? <h1>{data.forecast.forecastday[2].day.condition.text}</h1> : null}
+        {data.forecast.forecastday[2].day.condition ? <h1>{data.forecast.forecastday[2].day.avgtemp_c}  °C</h1> : null}
+        {data.forecast ? <h1>{data.forecast.forecastday[2].date}</h1> : null}
         </div>
       </div>
-    </div> */}
+    </div> 
   </div>
 }
     </div>
