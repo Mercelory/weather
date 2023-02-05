@@ -5,13 +5,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      'bg': "url('./src/bg.jpg')",
+      backgroundImage: {
+        'clouds': "url('/src/bg.jpg') !important",
+      }
     },
     screens: {
       'sm': '300px',
       // => @media (max-width: 300px) { ... }
 
-      'laptop': '1024px',
+      'md': '500px',
       // => @media (max-width: 1024px) { ... }
 
       'desktop': '1280px',
