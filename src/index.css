@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 body {
-  height: 100vh !important;
   margin: 0;
   font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: rgb(208, 217, 224) !important;
-  background-image: url('./bg.jpg') !important;
-  background-position: center;
-  background-size: cover;
+}
+
+* {
+  /* outline: 1px solid red;  */
+}
+
+::-webkit-scrollbar {
+  width: 0px;
 }
